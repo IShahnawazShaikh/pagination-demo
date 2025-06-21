@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,6 +35,14 @@ public class PaginationEndpoint {
     @PostMapping("/fetch-details-sort-pageholder")
     public ResponseEntity<Page<StudentEntity>> getAllStudentByOrderPageHolder(@RequestBody PageRequestStudentDto pageRequestStudentDto) {
         Page<StudentEntity> response = studentService.getAllStudentUsingPagedListHolder(pageRequestStudentDto);
+        return ResponseEntity.ok(response);
+    }
+
+
+    @PostMapping("/fetch-detail-city/{city}")
+    public ResponseEntity<Page<StudentEntity>> getAllStudentByCity(@RequestBody PageRequestStudentDto pageRequestStudentDto,
+                                                                   @PathVariable(name = "city") String city) {
+        Page<StudentEntity> response = studentService.findStudentByCity(pageRequestStudentDto, city);
         return ResponseEntity.ok(response);
     }
 }
