@@ -24,8 +24,8 @@ public class PaginationEndpoint {
 
     @PostMapping("/fetch-details")
     public ResponseEntity<Page<StudentEntity>> getAllStudentUsingPagination(@RequestBody PageRequestStudentDto pageRequestStudentDto) {
-          Page<StudentEntity> listPage = studentService.getAllStudent(pageRequestStudentDto);
-          return ResponseEntity.ok(listPage);
+        Page<StudentEntity> listPage = studentService.getAllStudent(pageRequestStudentDto);
+        return ResponseEntity.ok(listPage);
     }
 
     @PostMapping("/fetch-details-sort")
@@ -34,4 +34,11 @@ public class PaginationEndpoint {
         Page<StudentEntity> response = studentService.getAllStudentByOrder(pageRequestStudentDto);
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/fetch-details-sort-pageholder")
+    public ResponseEntity<Page<StudentEntity>> getAllStudentByOrderPageHolder(@RequestBody PageRequestStudentDto pageRequestStudentDto) {
+        Page<StudentEntity> response = studentService.getAllStudentUsingPagedListHolder(pageRequestStudentDto);
+        return ResponseEntity.ok(response);
+    }
 }
+
