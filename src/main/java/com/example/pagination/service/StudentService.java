@@ -76,4 +76,11 @@ public class StudentService {
         return new PageImpl<StudentEntity>(pagedListHolder.getPageList(), PageRequest.of(dto.getPageNo(), dto.getPageSize()), studentEntityList.size());
 
     }
+
+    public Page<StudentEntity> findStudentByCity(PageRequestStudentDto dto, String city) {
+        Pageable pageable = PageRequest.of(dto.getPageNo(), dto.getPageSize());
+
+        Page<StudentEntity>  studentEntityPage = studentRepository.findAllByCity(city, pageable);
+        return  studentEntityPage;
+    }
 }
