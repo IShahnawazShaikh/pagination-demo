@@ -28,6 +28,16 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Long> {
     Page<StudentEntity> findAllStudentByCityNative(@Param(value = "city") String city, Pageable pageable);
 
 
+    /**
+     * Spring automatically adds ORDER BY clause from the Pageable object when you use nativeQuery = true.
+     *
+     * You don’t need to manually write ORDER BY in your query — unless you're doing complex joins.
+     *
+     * 
+     * @param city
+     * @param pageable
+     * @return
+     */
     @Query(value = "SELECT * FROM student where city = :city",
             countQuery = "SELECT COUNT(*) FROM student WHERE city = :city", nativeQuery = true)
     Page<StudentEntity> findAllStudentByCityNativeSort(@Param(value = "city") String city, Pageable pageable);
