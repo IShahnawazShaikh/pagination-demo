@@ -68,7 +68,7 @@ public class PaginationApplication implements CommandLineRunner {
 		studentEntityList.add(StudentEntity.builder().name("Scooby Doo").city("US").build());
 		studentEntityList.add(StudentEntity.builder().name("Korra").city("China").build());
 
-
+        studentRepository.deleteAll();
 		studentRepository.saveAll(studentEntityList);
 
 	}

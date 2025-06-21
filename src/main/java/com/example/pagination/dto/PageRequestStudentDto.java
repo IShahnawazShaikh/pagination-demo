@@ -14,19 +14,6 @@ public class PageRequestStudentDto {
     private Integer pageNo = 0;
     private Integer pageSize = 10;
 
-    /**
-     *  Making request Object as Pagebale request Object
-     * @param dto
-     * @return
-     */
-    public Pageable getPageable(PageRequestStudentDto dto) {
-        Integer pageNo = Objects.nonNull(dto.getPageNo()) ? dto.getPageNo() : this.pageNo;
-        Integer pageSize = Objects.nonNull(dto.getPageSize()) ? dto.getPageSize() : this.pageSize;
-
-        PageRequest pageRequest = PageRequest.of(pageNo, pageSize);
-        return pageRequest;
-    }
-
     public Integer getPageNo() {
         return pageNo;
     }
