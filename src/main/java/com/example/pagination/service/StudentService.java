@@ -26,6 +26,20 @@ public class StudentService {
     public Page<StudentEntity> getAllStudent(PageRequestStudentDto dto) {
         Integer pageNo = Objects.nonNull(dto.getPageNo()) ? dto.getPageNo() : 0;
         Integer pageSize = Objects.nonNull(dto.getPageSize()) ? dto.getPageSize() : 10;
+
+        /**
+         *
+         *
+         *   Limit and offset equivalent query
+         *         Page<Student> students = studentRepository.findAll(PageRequest.of(2, 5));
+         *
+         *         SELECT * FROM students
+         *         LIMIT 5 OFFSET 10;
+         *         Offeset will be (pageSize * pageNumber)
+         *
+         *
+         */
+
         Pageable pageable = PageRequest.of(pageNo, pageSize);
         Page<StudentEntity> studentEntityPage = studentRepository.findAll(pageable);
         return studentEntityPage;
