@@ -83,4 +83,16 @@ public class StudentService {
         Page<StudentEntity>  studentEntityPage = studentRepository.findAllByCity(city, pageable);
         return  studentEntityPage;
     }
+
+    public Page<StudentEntity> findAllStudentByCityNative(PageRequestStudentDto dto, String city) {
+        Pageable pageable = PageRequest.of(dto.getPageNo(), dto.getPageSize());
+        Page<StudentEntity> studentEntityPage = studentRepository.findAllStudentByCityNative(city, pageable);
+        return studentEntityPage;
+    }
+
+    public Page<StudentEntity> findAllStudentByCityNativeSort(PageRequestStudentDto dto, String city) {
+        Pageable pageable = PageRequest.of(dto.getPageNo(), dto.getPageSize(), Sort.Direction.ASC, "name");
+        Page<StudentEntity> studentEntityPage = studentRepository.findAllStudentByCityNativeSort(city, pageable);
+        return studentEntityPage;
+    }
 }

@@ -45,5 +45,20 @@ public class PaginationEndpoint {
         Page<StudentEntity> response = studentService.findStudentByCity(pageRequestStudentDto, city);
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/fetch-detail-city/native/{city}")
+    public ResponseEntity<Page<StudentEntity>> getAllStudentByCityNative(@RequestBody PageRequestStudentDto pageRequestStudentDto,
+                                                                         @PathVariable(name = "city") String city) {
+        Page<StudentEntity> response = studentService.findAllStudentByCityNative(pageRequestStudentDto, city);
+        return ResponseEntity.ok(response);
+    }
+
+
+    @PostMapping("/fetch-detail-city/nativeSort/{city}")
+    public ResponseEntity<Page<StudentEntity>> getAllStudentByCityNativeSort(@RequestBody PageRequestStudentDto pageRequestStudentDto,
+                                                                         @PathVariable(name = "city") String city) {
+        Page<StudentEntity> response = studentService.findAllStudentByCityNativeSort(pageRequestStudentDto, city);
+        return ResponseEntity.ok(response);
+    }
 }
 
