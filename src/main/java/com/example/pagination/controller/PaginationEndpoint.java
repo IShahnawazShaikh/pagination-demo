@@ -27,4 +27,11 @@ public class PaginationEndpoint {
           Page<StudentEntity> listPage = studentService.getAllStudent(pageRequestStudentDto);
           return ResponseEntity.ok(listPage);
     }
+
+    @PostMapping("/fetch-details-sort")
+
+    public ResponseEntity<Page<StudentEntity>> getAllStudentByOrder(@RequestBody PageRequestStudentDto pageRequestStudentDto) {
+        Page<StudentEntity> response = studentService.getAllStudentByOrder(pageRequestStudentDto);
+        return ResponseEntity.ok(response);
+    }
 }
